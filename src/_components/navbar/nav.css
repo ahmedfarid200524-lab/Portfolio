@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=BBH+Bogle&display=swap');
+
+.dot-btn{
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  border: 2px solid ;
+   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.remove{
+  transition: all ease-in-out 0.3s;
+}
+
+
+.btn-container.open .remove {
+  transform: scale(0);
+  opacity: 0;
+}

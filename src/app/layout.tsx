@@ -1,10 +1,22 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import type { Metadata } from "next";
+import { BBH_Bogle, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/_components/navbar/Navbar";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import CustomCursor from "@/components/CustomCursor";
+import SwarmCursor from "@/components/SwarmCursor";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import Preloader from "@/components/Preloader";
+
+
+config.autoAddCss = false;
+
+const bogle = BBH_Bogle({
+  variable: "--font-bogle",
   subsets: ["latin"],
+  weight: "400",
 });
 
 const geistMono = Geist_Mono({
@@ -19,11 +31,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
+<html
+  lang="en"
+  suppressHydrationWarning
+  className={`${bogle.variable} ${geistMono.variable} h-full antialiased`}
+>
+  <head>
+   
+  </head>
+  <body className="min-h-full flex flex-col dark:bg-black dark:text-white">
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <Preloader />
+       <SwarmCursor  />
+  <Navbar />
+  {children}
+</ThemeProvider>
+  </body>
+</html>
   );
 }
